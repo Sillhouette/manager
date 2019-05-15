@@ -13,7 +13,7 @@ import {
   APP_ID
 } from 'react-native-dotenv';
 
-import { reducers } from './reducers';
+import reducers from './reducers';
 
 class App extends Component {
   componentWillMount() {
