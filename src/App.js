@@ -12,8 +12,8 @@ import {
   MESSAGING_SENDER_ID,
   APP_ID
 } from 'react-native-dotenv';
-
 import reducers from './reducers';
+import LoginForm from './components/LoginForm';
 
 class App extends Component {
   componentWillMount() {
@@ -31,9 +31,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={createStore(reducers)}>
-        <View>
-          <Text>Hello</Text>
-        </View>
+        <LoginForm />
       </Provider>
     );
   }
