@@ -8,11 +8,16 @@ class LoginForm extends Component {
     this.props.emailChanged(text);
   }
 
+  onPasswordChange(text) {
+    this.props.passwordChanged(text);
+  }
+
   render() {
     return (
       <Card>
         <CardSection>
           <Input
+            value={this.props.email}
             label="Email"
             placeholder="email@gmail.com"
             onChangeText={this.onEmailChange.bind(this)}
@@ -20,7 +25,13 @@ class LoginForm extends Component {
         </CardSection>
 
         <CardSection>
-          <Input secureTextEntry label="Password" placeholder="password" />
+          <Input
+            secureTextEntry
+            value={this.props.password}
+            label="Password"
+            placeholder="password"
+            onChangeText={this.onPasswordChange.bind(this)}
+          />
         </CardSection>
 
         <CardSection>
@@ -31,7 +42,9 @@ class LoginForm extends Component {
   }
 }
 
+const mapStateToProps = state => ({ email: state.auth.email, password: state.auth.password });
+
 export default connect(
-  null,
+  mapStateToProps,
   { emailChanged }
 )(LoginForm);
