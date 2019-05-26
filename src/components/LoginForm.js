@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card, CardSection, Input, Button } from './common';
-import { emailChanged } from '../actions';
+import { emailChanged, passwordChanged } from '../actions';
 
 class LoginForm extends Component {
   onEmailChange(text) {
@@ -46,5 +46,5 @@ const mapStateToProps = state => ({ email: state.auth.email, password: state.aut
 
 export default connect(
   mapStateToProps,
-  { emailChanged }
+  { emailChanged, passwordChanged }
 )(LoginForm);

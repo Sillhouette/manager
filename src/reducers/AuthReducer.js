@@ -9,6 +9,7 @@ export default (state = INITIAL_STATE, action) => {
 
     case PASSWORD_CHANGED:
       return { ...state, password: action.payload };
+
     default:
       return state;
   }
