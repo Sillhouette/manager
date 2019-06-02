@@ -48,8 +48,6 @@ class LoginForm extends Component {
   }
 }
 
-//nonsense
-
 const mapStateToProps = state => ({ email: state.auth.email, password: state.auth.password });
 
 export default connect(
