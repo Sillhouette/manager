@@ -25,6 +25,9 @@ export const loginUser = ({ email, password }) => dispatch => {
         .createUserWithEmailAndPassword(email, password)
         .then(user => {
           loginUserSuccess(dispatch, user);
+        })
+        .catch(() => {
+          loginUserFailure(dispatch);
         });
     });
 };
