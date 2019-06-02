@@ -5,7 +5,7 @@ import {
   LOGIN_USER_FAILURE
 } from '../actions/types';
 
-const INITIAL_STATE = { email: '', password: '', user: null };
+const INITIAL_STATE = { email: '', password: '', user: null, error: '' };
 
 export default (state = INITIAL_STATE, action) => {
   console.log(action);
@@ -20,7 +20,7 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, user: action.payload };
 
     case LOGIN_USER_FAILURE:
-      return { ...state };
+      return { ...state, error: 'Authentication Failed.' };
 
     default:
       return state;
