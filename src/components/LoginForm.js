@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import { connect, Text, View } from 'react-redux';
 import { Card, CardSection, Input, Button } from './common';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 
@@ -16,6 +16,16 @@ class LoginForm extends Component {
     const { email, password } = this.props;
 
     this.props.loginUser({ email, password });
+  }
+
+  renderError() {
+    if (this.props.error) {
+      return (
+        <View style={{ backgroundColor: 'white' }}>
+          <Text style={styles.errorTextSyle}>{this.props.error}</Text>
+        </View>
+      );
+    }
   }
 
   render() {
@@ -48,7 +58,19 @@ class LoginForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({ email: state.auth.email, password: state.auth.password });
+const styles = {
+  errorTextSyle: {
+    fontSize: 20,
+    alignSelf: 'center',
+    color: 'red'
+  }
+};
+
+const mapStateToProps = state => ({
+  email: state.auth.email,
+  password: state.auth.password,
+  error: state.auth.error
+});
 
 export default connect(
   mapStateToProps,
