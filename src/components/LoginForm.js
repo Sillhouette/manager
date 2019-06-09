@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { connect, Text, View } from 'react-redux';
-import { Card, CardSection, Input, Button } from './common';
+import { connect } from 'react-redux';
+import { Text, View } from 'react-native';
+import { Card, CardSection, Input, Button, Spinner } from './common';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 
 class LoginForm extends Component {
@@ -19,6 +20,7 @@ class LoginForm extends Component {
   }
 
   renderError() {
+    console.log(this.props.error);
     if (this.props.error) {
       return (
         <View style={{ backgroundColor: 'white' }}>
@@ -26,6 +28,13 @@ class LoginForm extends Component {
         </View>
       );
     }
+  }
+
+  renderButton() {
+    if (this.props.loading) {
+      return <Spinner size="large" />;
+    }
+    return <Button onPress={this.onButtonPress.bind(this)}>Login</Button>;
   }
 
   render() {
@@ -52,9 +61,7 @@ class LoginForm extends Component {
 
         {this.renderError()}
 
-        <CardSection>
-          <Button onPress={this.onButtonPress.bind(this)}>Login</Button>
-        </CardSection>
+        <CardSection>{this.renderButton()}</CardSection>
       </Card>
     );
   }
@@ -68,11 +75,10 @@ const styles = {
   }
 };
 
-const mapStateToProps = state => ({
-  email: state.auth.email,
-  password: state.auth.password,
-  error: state.auth.error
-});
+const mapStateToProps = ({ auth }) => {
+  const { email, password, error, loading } = auth;
+  return { email, password, error, loading };
+};
 
 export default connect(
   mapStateToProps,
