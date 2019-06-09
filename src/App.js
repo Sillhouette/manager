@@ -14,6 +14,7 @@ import {
 } from 'react-native-dotenv';
 import reducers from './reducers';
 import LoginForm from './components/LoginForm';
+import { Header } from './components/common/Header';
 
 class App extends Component {
   componentWillMount() {
@@ -31,6 +32,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
+        <Header headerText="Manager" />
         <LoginForm />
       </Provider>
     );
